@@ -3,14 +3,10 @@ class Solution:
         if len(s) != len(t):
             return False
 
-        counts, countT = {}, {}
+        count = {}
 
         for i in range(len(s)):
-            counts[s[i]] = counts.get(s[i], 0) + 1
-            countT[t[i]] = countT.get(t[i], 0) + 1
+            count[s[i]] = count.get(s[i], 0) + 1
+            count[t[i]] = count.get(t[i], 0) - 1
 
-        for c in counts:
-            if counts[c] != countT.get(c, 0):
-                return False
-
-        return True
+        return all(v == 0 for v in count.values())
