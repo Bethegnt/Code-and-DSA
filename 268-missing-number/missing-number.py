@@ -1,6 +1,10 @@
 class Solution:
-    def missingNumber(self, nums: List[int]) -> int:
+    def missingNumber(self, nums):
         n = len(nums)
-        Tsum = (n * (n + 1)) // 2
-        actual_sum = sum(nums)
-        return Tsum - actual_sum
+        xor = 0
+        for i in range(n + 1):
+            xor ^= i
+        for num in nums:
+            xor ^= num
+
+        return xor
